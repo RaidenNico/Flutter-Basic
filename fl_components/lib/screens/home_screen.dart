@@ -1,5 +1,8 @@
-//import 'package:fl_components/screens/screens.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fl_components/theme/app_theme.dart';
+import 'package:fl_components/router/app_routes.dart';
+
 
 class HomeScreen extends StatelessWidget {
    
@@ -7,29 +10,31 @@ class HomeScreen extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+
+    final menuOptions = AppRoutes.menuOptions;
+
+    return Scaffold(
       appBar: AppBar(
-      title: const Text('Google Maps5'), 
-      elevation: 15,
-    ),
+        title: const Text('Componentes en Flutter'),
+      ),
       body: ListView.separated(
-        itemBuilder: (context, index) => ListTile(
-          leading: const Icon(Icons.add_outlined),
-          title: const Text("Nombre de Ruta"),
+        itemBuilder: (context, i ) => ListTile(
+          leading: Icon( menuOptions[i].icon, color: AppTheme.primary ),
+          title: Text( menuOptions[i].name ),
           onTap: () {
 
-            //final route = MaterialPageRoute(
-            //  builder: (context) => const Listview1Screen(),
-            //  );
-            // Navigator.push(context, 'alert');
+            // final route = MaterialPageRoute(
+            //   builder: (context) => const Listview1Screen(),
+            // );
+            // Navigator.push(context, route );
 
-            Navigator.pushNamed(context, "alert");
+            Navigator.pushNamed(context, menuOptions[i].route );
 
           },
         ), 
-        separatorBuilder: (_ , __) => const Divider(),
-        itemCount: 15
-     ),
+        separatorBuilder: ( _, __ ) => const Divider(), 
+        itemCount: menuOptions.length
+      )
     );
   }
 }
