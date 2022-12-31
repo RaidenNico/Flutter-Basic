@@ -18,7 +18,7 @@ class ProductsService extends ChangeNotifier {
     this.isLoading = true;
     notifyListeners();
 
-    final url = Uri.http(_baseUrl, "products.json");
+    final url = Uri.https(_baseUrl, "products.json");
     final resp = await http.get(url);
 
     final Map<String, dynamic> productsMap = json.decode(resp.body);
