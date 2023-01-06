@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nicolasbadajos.notificaciones">
    <application
-        android:label="notificaciones"
+        android:label="Notificaciones"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

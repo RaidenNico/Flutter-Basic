@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.productos_app">
    <application
-        android:label="productos_app"
+        android:label="Productos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
