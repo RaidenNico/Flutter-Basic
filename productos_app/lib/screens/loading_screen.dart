@@ -5,7 +5,7 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Products"),
+          title: Text("Productos"),
         ),
         body: Center(
           child: CircularProgressIndicator(
