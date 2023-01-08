@@ -57,6 +57,7 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
+        // ignore: prefer_if_null_operators
         author: json["author"] == null ? null : json["author"],
         title: json["title"],
         description: json["description"],
@@ -68,6 +69,7 @@ class Article {
 
   Map<String, dynamic> toJson() => {
         "source": source.toJson(),
+        // ignore: prefer_if_null_operators
         "author": author == null ? null : author,
         "title": title,
         "description": description,
@@ -88,11 +90,13 @@ class Source {
   });
 
   factory Source.fromJson(Map<String, dynamic> json) => Source(
+        // ignore: prefer_if_null_operators
         id: json["id"] == null ? null : json["id"],
         name: json["name"],
       );
 
   Map<String, dynamic> toJson() => {
+        // ignore: prefer_if_null_operators
         "id": id == null ? null : id,
         "name": name,
       };

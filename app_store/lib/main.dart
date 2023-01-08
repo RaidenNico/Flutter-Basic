@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
@@ -10,14 +10,16 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hola Mundo con Flutter'),
+        title: const Text('Hola Mundo con Flutter'),
         backgroundColor: Colors.indigo,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'Hola Mundo!',
           style: TextStyle(fontSize: 32),

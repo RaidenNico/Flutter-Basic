@@ -13,6 +13,7 @@ class AppTheme {
 
       // TextButton Theme
       textButtonTheme:
+          // ignore: deprecated_member_use
           TextButtonThemeData(style: TextButton.styleFrom(primary: primary)),
 
       // FloatingActionButtons
@@ -22,7 +23,10 @@ class AppTheme {
       // ElevatedButtons
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            primary: Colors.indigo, shape: const StadiumBorder(), elevation: 0),
+            // ignore: deprecated_member_use
+            primary: Colors.indigo,
+            shape: const StadiumBorder(),
+            elevation: 0),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         floatingLabelStyle: TextStyle(color: primary),

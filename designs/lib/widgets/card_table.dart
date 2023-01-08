@@ -47,16 +47,16 @@ class _SingleCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
-          backgroundColor: this.color,
+          backgroundColor: color,
           radius: 30,
           child: Icon(
-            this.icon,
+            icon,
             size: 35,
             color: Colors.white,
           ),
         ),
         const SizedBox(height: 10),
-        Text(this.text, style: TextStyle(color: this.color, fontSize: 18))
+        Text(text, style: TextStyle(color: color, fontSize: 18))
       ],
     ));
   }
@@ -65,7 +65,7 @@ class _SingleCard extends StatelessWidget {
 class _CardBackground extends StatelessWidget {
   final Widget child;
 
-  const _CardBackground({super.key, required this.child});
+  const _CardBackground({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class _CardBackground extends StatelessWidget {
             decoration: BoxDecoration(
                 color: const Color.fromRGBO(62, 66, 107, 0.7),
                 borderRadius: BorderRadius.circular(20)),
-            child: this.child,
+            child: child,
           ),
         ),
       ),

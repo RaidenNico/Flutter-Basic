@@ -9,7 +9,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
       child: Container(
         decoration: _buildBoxDecoration(),
         width: double.infinity,
@@ -17,7 +17,7 @@ class ProductImage extends StatelessWidget {
         child: Opacity(
           opacity: 0.8,
           child: ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(45), topRight: Radius.circular(45)),
               child: getImage(url)),
         ),
@@ -27,28 +27,30 @@ class ProductImage extends StatelessWidget {
 
   BoxDecoration _buildBoxDecoration() => BoxDecoration(
           color: Colors.black,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(45), topRight: Radius.circular(45)),
           boxShadow: [
             BoxShadow(
                 color: Colors.black.withOpacity(0.05),
                 blurRadius: 10,
-                offset: Offset(0, 5))
+                offset: const Offset(0, 5))
           ]);
 
   Widget getImage(String? picture) {
-    if (picture == null)
-      return Image(
+    if (picture == null) {
+      return const Image(
         image: AssetImage("assets/no-image.png"),
         fit: BoxFit.cover,
       );
+    }
 
-    if (picture.startsWith("http"))
+    if (picture.startsWith("http")) {
       return FadeInImage(
-        image: NetworkImage(this.url!),
-        placeholder: AssetImage("assets/jar-loading.gif"),
+        image: NetworkImage(url!),
+        placeholder: const AssetImage("assets/jar-loading.gif"),
         fit: BoxFit.cover,
       );
+    }
 
     return Image.file(
       File(picture),

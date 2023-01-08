@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../services/services.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,29 +16,30 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: 250),
+          const SizedBox(height: 250),
           CardContainer(
               child: Column(
             children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text("Login", style: Theme.of(context).textTheme.headline4),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ChangeNotifierProvider(
-                  create: (_) => LoginFormProvider(), child: _LoginForm()),
+                  create: (_) => LoginFormProvider(),
+                  child: const _LoginForm()),
             ],
           )),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           TextButton(
             onPressed: () =>
                 Navigator.pushReplacementNamed(context, "register"),
             style: ButtonStyle(
                 overlayColor:
                     MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
-                shape: MaterialStateProperty.all(StadiumBorder())),
-            child: Text("Crear una nueva cuenta",
+                shape: MaterialStateProperty.all(const StadiumBorder())),
+            child: const Text("Crear una nueva cuenta",
                 style: TextStyle(fontSize: 18, color: Colors.black87)),
           ),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
         ],
       ),
     )));
@@ -44,11 +47,12 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({super.key});
+  const _LoginForm();
 
   @override
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LoginFormProvider>(context);
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Form(
         key: loginForm.formKey,
@@ -66,14 +70,14 @@ class _LoginForm extends StatelessWidget {
               validator: (value) {
                 String pattern =
                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                RegExp regExp = new RegExp(pattern);
+                RegExp regExp = RegExp(pattern);
 
                 return regExp.hasMatch(value ?? "")
                     ? null
                     : "El valor ingresado no luce como un correo";
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             TextFormField(
               autocorrect: false,
               obscureText: true,
@@ -89,18 +93,13 @@ class _LoginForm extends StatelessWidget {
                     : "La contraseña debe ser de 6 caracteres";
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             MaterialButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 disabledColor: Colors.grey,
                 elevation: 0,
                 color: Colors.deepPurple,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                  child: Text(loginForm.isLoading ? "Espere..." : "Ingresar",
-                      style: TextStyle(color: Colors.white)),
-                ),
                 onPressed: loginForm.isLoading
                     ? null
                     : () async {
@@ -116,13 +115,21 @@ class _LoginForm extends StatelessWidget {
                             loginForm.email, loginForm.password);
 
                         if (errorMessage == null) {
+                          // ignore: use_build_context_synchronously
                           Navigator.pushReplacementNamed(context, "home");
                         } else {
+                          // ignore: avoid_print
                           print(errorMessage);
                           NotificationsService.showSnackbar(errorMessage);
                           loginForm.isLoading = false;
                         }
-                      })
+                      },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                  child: Text(loginForm.isLoading ? "Espere..." : "Ingresar",
+                      style: const TextStyle(color: Colors.white)),
+                ))
           ],
         ),
       ),

@@ -12,7 +12,7 @@ class ProductsService extends ChangeNotifier {
   final List<Product> products = [];
   late Product? selectedProduct;
 
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   File? newPictureFile;
 
@@ -20,11 +20,11 @@ class ProductsService extends ChangeNotifier {
   bool isSaving = false;
 
   ProductsService() {
-    this.loadProducts();
+    loadProducts();
   }
 
   Future<List<Product>> loadProducts() async {
-    this.isLoading = true;
+    isLoading = true;
     notifyListeners();
 
     final url = Uri.https(_baseUrl, "products.json",
@@ -36,12 +36,12 @@ class ProductsService extends ChangeNotifier {
     productsMap.forEach((key, value) {
       final tempProduct = Product.fromMap(value);
       tempProduct.id = key;
-      this.products.add(tempProduct);
+      products.add(tempProduct);
     });
 
-    this.isLoading = false;
+    isLoading = false;
     notifyListeners();
-    return this.products;
+    return products;
   }
 
   Future saveOrCreateProduct(Product product) async {
@@ -49,9 +49,9 @@ class ProductsService extends ChangeNotifier {
     notifyListeners();
 
     if (product.id == null) {
-      await this.createProduct(product);
+      await createProduct(product);
     } else {
-      await this.updateProduct(product);
+      await updateProduct(product);
     }
 
     isSaving = false;
@@ -62,11 +62,11 @@ class ProductsService extends ChangeNotifier {
     final url = Uri.https(_baseUrl, "products/${product.id}.json",
         {"auth": await storage.read(key: "token") ?? ""});
     final resp = await http.put(url, body: product.toJson());
+    // ignore: unused_local_variable
     final decodedData = resp.body;
 
-    final index =
-        this.products.indexWhere((element) => element.id == product.id);
-    this.products[index] = product;
+    final index = products.indexWhere((element) => element.id == product.id);
+    products[index] = product;
     return product.id!;
   }
 
@@ -76,21 +76,21 @@ class ProductsService extends ChangeNotifier {
     final resp = await http.post(url, body: product.toJson());
     final decodedData = json.decode(resp.body);
     product.id == decodedData["name"];
-    this.products.add(product);
+    products.add(product);
     return product.id!;
   }
 
   void updateSelectedProductImage(String path) {
-    this.selectedProduct?.picture = path;
-    this.newPictureFile = File.fromUri(Uri(path: path));
+    selectedProduct?.picture = path;
+    newPictureFile = File.fromUri(Uri(path: path));
 
     notifyListeners();
   }
 
   Future<String?> uploadImage() async {
-    if (this.newPictureFile == null) return null;
+    if (newPictureFile == null) return null;
 
-    this.isSaving = true;
+    isSaving = true;
     notifyListeners();
     final url = Uri.parse(
         "https://api.cloudinary.com/v1_1/dt1exevbl/image/upload?upload_preset=dl6fjwnz");
@@ -104,12 +104,14 @@ class ProductsService extends ChangeNotifier {
     final resp = await http.Response.fromStream(streamResponse);
 
     if (resp.statusCode != 200 && resp.statusCode != 201) {
+      // ignore: avoid_print
       print("algo salio mal");
+      // ignore: avoid_print
       print(resp.body);
       return null;
     }
 
-    this.newPictureFile = null;
+    newPictureFile = null;
 
     final decodedData = json.decode(resp.body);
     return decodedData["secure_url"];

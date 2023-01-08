@@ -5,14 +5,14 @@ import 'package:news_app/src/theme/tema.dart';
 class ListaNoticias extends StatelessWidget {
   final List<Article> noticias;
 
-  const ListaNoticias(this.noticias);
+  const ListaNoticias(this.noticias, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: this.noticias.length,
+      itemCount: noticias.length,
       itemBuilder: (BuildContext context, int index) {
-        return _Noticia(noticia: this.noticias[index], index: index);
+        return _Noticia(noticia: noticias[index], index: index);
       },
     );
   }
@@ -33,8 +33,8 @@ class _Noticia extends StatelessWidget {
         _TarjetaImagen(noticia),
         _TarjetaBody(noticia),
         _TarjetaBotones(),
-        SizedBox(height: 10),
-        Divider(),
+        const SizedBox(height: 10),
+        const Divider(),
       ],
     );
   }
@@ -43,24 +43,26 @@ class _Noticia extends StatelessWidget {
 class _TarjetaBotones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: avoid_unnecessary_containers
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RawMaterialButton(
             onPressed: () {},
+            // ignore: deprecated_member_use
             fillColor: miTema.accentColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Icon(Icons.star_border),
+            child: const Icon(Icons.star_border),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           RawMaterialButton(
             onPressed: () {},
             fillColor: Colors.indigo,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: Icon(Icons.more),
+            child: const Icon(Icons.more),
           ),
         ],
       ),
@@ -76,7 +78,7 @@ class _TarjetaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Text((noticia.description != null) ? noticia.description! : ""),
     );
   }
@@ -90,17 +92,17 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
         child: Container(
             child: (noticia.urlToImage != null)
                 ? FadeInImage(
-                    placeholder: AssetImage("assets/giphy.gif"),
+                    placeholder: const AssetImage("assets/giphy.gif"),
                     image: NetworkImage(noticia.urlToImage!),
                   )
-                : Image(image: AssetImage("assets/no-image.png"))),
+                : const Image(image: AssetImage("assets/no-image.png"))),
       ),
     );
   }
@@ -113,10 +115,10 @@ class _TarjetaTitulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Text(
         noticia.title,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
       ),
     );
   }
@@ -131,12 +133,13 @@ class _TarjetaTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: <Widget>[
           Text(
             "${index + 1}.",
+            // ignore: deprecated_member_use
             style: TextStyle(color: miTema.accentColor),
           ),
           Text("${noticia.source.name}."),

@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
+// ignore: unnecessary_import
 import 'dart:typed_data';
 
 class FullScreenMap extends StatefulWidget {
+  const FullScreenMap({super.key});
+
   @override
   State<FullScreenMap> createState() => _FullScreenMapState();
 }
 
 class _FullScreenMapState extends State<FullScreenMap> {
   late MapboxMapController mapController;
-  final center = LatLng(-11.967745156683534, -76.99607756309396);
+  final center = const LatLng(-11.967745156683534, -76.99607756309396);
   String selectedStyle = "mapbox://styles/raidennico/clcmn8d2j008q14pae3rbz92o";
   final sateliteStyle = "mapbox://styles/raidennico/clcmn8d2j008q14pae3rbz92o";
   final streetStyle = "mapbox://styles/raidennico/clcmd4o2a008o14paf96vlfl1";
@@ -54,39 +58,39 @@ class _FullScreenMapState extends State<FullScreenMap> {
       children: <Widget>[
         //! Símbolos
         FloatingActionButton(
-            child: Icon(Icons.add_location_alt_outlined),
+            child: const Icon(Icons.add_location_alt_outlined),
             onPressed: () {
               mapController.addSymbol(SymbolOptions(
                   geometry: center,
                   //iconSize: 3,
                   iconImage: 'networkImage',
                   textField: 'Ubicacion creada aquí',
-                  textOffset: Offset(0, 2)));
+                  textOffset: const Offset(0, 2)));
             }),
 
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
 
         //! ZoomInt
         FloatingActionButton(
-            child: Icon(Icons.zoom_in),
+            child: const Icon(Icons.zoom_in),
             onPressed: () {
               mapController.animateCamera(CameraUpdate.zoomIn());
             }),
 
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
 
         //! ZoomOut
         FloatingActionButton(
-            child: Icon(Icons.zoom_out),
+            child: const Icon(Icons.zoom_out),
             onPressed: () {
               mapController.animateCamera(CameraUpdate.zoomOut());
             }),
 
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
 
         //! Cambiar Estilos
         FloatingActionButton(
-            child: Icon(Icons.add_to_home_screen),
+            child: const Icon(Icons.add_to_home_screen),
             onPressed: () {
               if (selectedStyle == sateliteStyle) {
                 selectedStyle == streetStyle;

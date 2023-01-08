@@ -44,6 +44,15 @@ dev_dependencies:
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+  
+  flutter_launcher_icons: ^0.11.0
+
+
+# preferences.png
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/imagen.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,7 +1,7 @@
 import 'package:app_films/models/imports/models.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-
+// ignore: unused_import
 import '../routers/app.routes.dart';
 
 class CardSwiperWidget extends StatelessWidget {

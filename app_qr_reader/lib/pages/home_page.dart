@@ -58,7 +58,7 @@ class _HomePageBody extends StatelessWidget {
 
       case 1:
         scanListProvider.cargarScanPorTipo('http');
-        return DireccionesPage();
+        return const DireccionesPage();
 
       default:
         scanListProvider.cargarScanPorTipo('http');

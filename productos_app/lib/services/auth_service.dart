@@ -6,7 +6,7 @@ import 'dart:convert';
 class AuthService extends ChangeNotifier {
   final String _baseUrl = "identitytoolkit.googleapis.com";
   final String _firebaseToken = "AIzaSyAGUdFriNkJbCA2d4Drm3xMcYJaJqT6qDQ";
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   Future<String?> createUser(String email, String password) async {
     final Map<String, dynamic> authData = {

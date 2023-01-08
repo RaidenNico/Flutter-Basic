@@ -21,7 +21,6 @@ class _CounterScreenState extends State<CounterScreen> {
   }
 
   void reduce() {
-    ;                    
     counter = 0;
     setState(() {});
   }
@@ -78,7 +77,7 @@ class CustomFloatingActions extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         FloatingActionButton(
-          child: const Icon(Icons.phone_android_sharp),
+          child: const Icon(Icons.add),
           onPressed: () => increaseFn(),
         ),
         FloatingActionButton(
@@ -86,7 +85,7 @@ class CustomFloatingActions extends StatelessWidget {
           onPressed: () => reduceFn(),
         ),
         FloatingActionButton(
-          child: const Icon(Icons.add_alert_sharp),
+          child: const Icon(Icons.playlist_remove_outlined),
           onPressed: () => decreaseFn(),
         ),
       ],

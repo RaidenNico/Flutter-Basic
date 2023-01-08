@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:productos_app/screens/screens.dart';
+// ignore: unnecessary_import
 import 'package:productos_app/services/auth_service.dart';
+// ignore: unnecessary_import
 import 'package:productos_app/services/products_service.dart';
 import 'package:productos_app/services/services.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => ProductsService())
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
@@ -32,11 +34,11 @@ class MyApp extends StatelessWidget {
       title: 'Productos App',
       initialRoute: "login",
       routes: {
-        "checking": (_) => CheckAuthScreen(),
-        "home": (_) => HomeScreen(),
-        "login": (_) => LoginScreen(),
-        "product": (_) => ProductScreen(),
-        "register": (_) => RegisterScreen(),
+        "checking": (_) => const CheckAuthScreen(),
+        "home": (_) => const HomeScreen(),
+        "login": (_) => const LoginScreen(),
+        "product": (_) => const ProductScreen(),
+        "register": (_) => const RegisterScreen(),
       },
       scaffoldMessengerKey: NotificationsService.messengerKey,
       theme:

@@ -4,7 +4,9 @@ import 'package:news_app/src/models/category_model.dart';
 import 'package:news_app/src/models/news_models.dart';
 import 'package:http/http.dart' as http;
 
+// ignore: non_constant_identifier_names, prefer_const_declarations
 final _URL_NEWS = "https://newsapi.org/v2";
+// ignore: prefer_const_declarations, non_constant_identifier_names
 final _APIKEY = "bda7196021f7475ab262a3c595427fb6";
 
 class NewsService with ChangeNotifier {
@@ -25,43 +27,45 @@ class NewsService with ChangeNotifier {
   Map<String, List<Article>> categoryArticles = {};
 
   NewsService() {
-    this.getTopHeadlines();
+    getTopHeadlines();
 
+    // ignore: avoid_function_literals_in_foreach_calls
     categories.forEach((item) {
-      this.categoryArticles[item.name] = [];
+      categoryArticles[item.name] = [];
     });
   }
 
-  get selectedCategory => this._selectedCategory;
+  get selectedCategory => _selectedCategory;
   set setselectedCategory(String valor) {
-    this._selectedCategory = valor;
+    _selectedCategory = valor;
 
-    this.getArticlesByCategory(valor);
+    getArticlesByCategory(valor);
     notifyListeners();
   }
 
   List<Article>? get getArticulosCategoriaSeleccionada =>
-      this.categoryArticles[this.selectedCategory];
+      categoryArticles[selectedCategory];
 
   getTopHeadlines() async {
     final url =
         Uri.parse("$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=mx");
     final resp = await http.get(url);
     final newsResponse = newsResponseFromJson(resp.body);
-    this.headlines.addAll(newsResponse.articles);
+    headlines.addAll(newsResponse.articles);
     notifyListeners();
   }
 
   getArticlesByCategory(String category) async {
-    if (this.categoryArticles[category]!.length > 0) {
-      return this.categoryArticles[category];
+    // ignore: prefer_is_empty
+    if (categoryArticles[category]!.length > 0) {
+      return categoryArticles[category];
     }
 
     final url = Uri.parse(
         "$_URL_NEWS/top-headlines?apiKey=$_APIKEY&country=mx&category=$category");
     final resp = await http.get(url);
     final newsResponse = newsResponseFromJson(resp.body);
-    this.categoryArticles[category]?.addAll(newsResponse.articles);
+    categoryArticles[category]?.addAll(newsResponse.articles);
     notifyListeners();
   }
 }

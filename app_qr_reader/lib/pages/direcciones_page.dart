@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:provider/provider.dart';
-
+// ignore: unused_import
 import '../providers/scan_list_provider.dart';
 import '../widgets/scan_tiles.dart';
 

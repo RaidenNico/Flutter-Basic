@@ -40,6 +40,14 @@ dev_dependencies:
     sdk: flutter
   http: ^0.13.5
 
+  flutter_launcher_icons: ^0.11.0
+
+# preferences.png
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/mapbox.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

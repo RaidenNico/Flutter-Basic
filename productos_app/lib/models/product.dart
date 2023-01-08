@@ -3,6 +3,7 @@
 //     final product = productFromMap(jsonString);
 
 import 'dart:convert';
+// ignore: unused_import
 import 'package:productos_app/models/models.dart';
 
 class Product {
@@ -38,10 +39,10 @@ class Product {
       };
 
   Product copy() => Product(
-        availabel: this.availabel,
-        name: this.name,
-        picture: this.picture,
-        price: this.price,
-        id: this.id,
+        availabel: availabel,
+        name: name,
+        picture: picture,
+        price: price,
+        id: id,
       );
 }

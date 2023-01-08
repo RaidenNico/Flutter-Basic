@@ -8,12 +8,13 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 class PushNotificationService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
   static String? token;
-  static StreamController<String> _messageStream =
-      new StreamController.broadcast();
+  static final StreamController<String> _messageStream =
+      StreamController.broadcast();
   static Stream<String> get messagesStream => _messageStream.stream;
 
   static Future _backgroundHandler(RemoteMessage message) async {
     //print("onBackground Handler ${message.messageId}");
+    // ignore: avoid_print
     print(message.data);
 
     _messageStream.add(message.data["product"] ?? "No data");
@@ -21,6 +22,7 @@ class PushNotificationService {
 
   static Future _onMessageHandler(RemoteMessage message) async {
     //print("onMessage Handler ${message.messageId}");
+    // ignore: avoid_print
     print(message.data);
 
     _messageStream.add(message.data["product"] ?? "No data");
@@ -28,6 +30,7 @@ class PushNotificationService {
 
   static Future _onMessageOpenApp(RemoteMessage message) async {
     //print("onMessageOpenApp Handler ${message.messageId}");
+    // ignore: avoid_print
     print(message.data);
 
     _messageStream.add(message.data["product"] ?? "No data");
@@ -37,6 +40,7 @@ class PushNotificationService {
     //Notificaciones
     await Firebase.initializeApp();
     token = await FirebaseMessaging.instance.getToken();
+    // ignore: avoid_print
     print('Token: $token');
 
     FirebaseMessaging.onBackgroundMessage(_backgroundHandler);

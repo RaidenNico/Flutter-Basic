@@ -9,12 +9,12 @@ class MessageScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Message"),
+        title: const Text("Message"),
       ),
       body: Center(
         child: Text(
           "$args",
-          style: TextStyle(fontSize: 30),
+          style: const TextStyle(fontSize: 30),
         ),
       ),
     );

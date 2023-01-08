@@ -17,10 +17,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final GlobalKey<ScaffoldMessengerState> messengerKey =
-      new GlobalKey<ScaffoldMessengerState>();
+      GlobalKey<ScaffoldMessengerState>();
 
   @override
   void initState() {
@@ -43,8 +42,8 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       scaffoldMessengerKey: messengerKey,
       routes: {
-        "home": (_) => HomeScreen(),
-        "message": (_) => MessageScreen(),
+        "home": (_) => const HomeScreen(),
+        "message": (_) => const MessageScreen(),
       },
     );
   }

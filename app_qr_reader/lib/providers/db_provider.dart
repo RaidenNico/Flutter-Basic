@@ -27,6 +27,7 @@ class DBProvider {
 
     final path = join(documentsDirectory.path, 'ScansDb.db');
 
+    // ignore: avoid_print
     print(path);
 
     // Crear la base de datos
